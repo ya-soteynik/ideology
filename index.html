@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Русский мир</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+        }
+        
+        .logo-container {
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+        }
+        
+        .document-section {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="50" height="50" x="0" y="0" fill="%23f0f4ff"/><rect width="50" height="50" x="50" y="50" fill="%23f0f4ff"/></svg>');
+            background-size: 30px 30px;
+        }
+        
+        .document-card {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #2563eb;
+            transition: transform 0.3s ease;
+        }
+        
+        .document-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .contact-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover .contact-icon {
+            transform: scale(1.1);
+            color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка с логотипом -->
+    <header class="header-bg text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="logo-container rounded-full p-6 mb-8 md:mb-0 md:mr-12">
+                    <div class="bg-white rounded-full p-6 shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-blue-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="text-4xl font-bold mb-4 font-['Roboto_Slab']">Русский мир</h1>
+                    <p class="text-xl opacity-90 max-w-2xl">Тут будет написано о том что вообще такое Русский мир</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основное содержимое -->
+    <main class="container mx-auto px-6 py-12">
+        <!-- О организации -->
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 font-['Roboto_Slab']">О нашей организации</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div>
+                    <p class="text-gray-700 mb-6 text-lg leading-relaxed">
+                        <span class="font-semibold">Русский мир</span> - это...
+                    </p>
+                    <p class="text-gray-700 mb-6 text-lg leading-relaxed">
+                        И тут тоже будет написано о Русском мире
+                    </p>
+                </div>
+            </div>
+            
+            <div class="bg-blue-50 rounded-lg p-8 border border-blue-100">
+                <h3 class="text-2xl font-semibold text-blue-800 mb-4">Наши основные направления:</h3>
+                <ul class="grid md:grid-cols-2 gap-4">
+                    <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span class="text-gray-700">Тут будут направления вашей работы</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Документ -->
+        <section class="document-section mb-20 p-8 rounded-lg">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 font-['Roboto_Slab']">Ваш документ, которому нужен сайт</h2>
+            
+            <div class="document-card bg-white rounded-lg p-8 mb-8">
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#" class="bg-blue-700 hover:bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold text-center transition duration-300">
+                        Скачать документ (PDF)
+                    </a>
+                    <a href="#" class="bg-white hover:bg-gray-100 text-blue-700 border border-blue-700 px-8 py-3 rounded-lg font-semibold text-center transition duration-300">
+                        Читать онлайн
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Контакты -->
+        <section id="contacts" class="mb-20">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 font-['Roboto_Slab']">Контакты</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <div class="contact-item mb-6 flex items-start">
+                        <div class="contact-icon bg-blue-100 p-3 rounded-full mr-4 text-blue-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-1">Адрес</h3>
+                            <p class="text-gray-600">Тут будет адрес</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item mb-6 flex items-start">
+                        <div class="contact-icon bg-blue-100 p-3 rounded-full mr-4 text-blue-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-1">Электронная почта</h3>
+                            <p class="text-gray-600"><a href="mailto:info@russkiymir.ru" class="hover:text-blue-700">Тут ваш адрес электронной почты</a></p>
+                        </div>
+                    </div>
