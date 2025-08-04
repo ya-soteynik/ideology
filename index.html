@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <title>Проект Национальной Идеологии России</title>
     <style>
         :root {
@@ -19,6 +20,13 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (min-width: 992px) {
+            .content-section {
+                width: 70%; /* Занимает 70% ширины экрана */
+                margin: 0 auto 60px;
+            }
         }
 
         /* Базовые стили */
@@ -45,6 +53,7 @@
             border-radius: 0 0 20px 20px;
             backdrop-filter: blur(10px);
             animation: fadeIn 0.8s ease-out;
+            z-index: 10000; /* Добавьте это */
         }
 
         .menu-container {
@@ -86,6 +95,7 @@
         }
 
         .content-section {
+            position: relative; 
             background: rgba(255,255,255,0.9);
             border-radius: 20px;
             margin-bottom: 60px;
@@ -254,31 +264,48 @@
         }
 
         .results-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #9c27b0, #7b1fa2);
-            color: white;
-            padding: 15px 40px; /* Совпадает с vote-btn */
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            margin: 30px auto 0;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 15px rgba(156, 39, 176, 0.2);
+            /* Те же параметры, что и у .vote-btn */
+            padding: 20px 40px;
+            min-width: 200px;
             border: none;
-            cursor: pointer;
+            border-radius: 50px;
+            font-weight: 600;
             font-size: 16px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
-            min-width: 200px; /* Добавляем минимальную ширину как у vote-btn */
-            text-align: center; /* Центрируем текст */
+            z-index: 1;
+            
+            /* Уникальные стили для этой кнопки */
+            display: inline-block; /* Для точного соответствия */
+            background: linear-gradient(135deg, #9c27b0, #7b1fa2);
+            color: white;
+            text-decoration: none;
+            margin: 30px auto 0;
+            text-align: center;
+        }
+
+        .results-btn:hover {
+            transform: translateY(-5px); /* Такая же анимация, как у vote-btn */
+            box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 768px) {
+            .results-btn {
+                padding: 16px 30px;
+                min-width: 160px;
+                font-size: 14px;
+            }
         }
 
         @media (max-width: 576px) {
             .results-btn {
-                width: 70%; /* На мобильных занимает всю ширину */
-                padding: 16px 30px; /* Адаптивный padding */
-    }
-}
+                width: 100%;
+                max-width: 70%; /* Полная ширина на маленьких экранах */
+            }
+        }
 
         .results-btn:hover {
             transform: translateY(-3px);
@@ -288,6 +315,7 @@
         /* Стили для выпадающего меню */
         .dropdown {
             position: relative;
+            z-index: 1101; /* Добавляем это - должен быть выше чем у content-section */
             display: inline-block;
             margin-top: 20px;
         }
@@ -318,7 +346,11 @@
             margin-left: 10px;
             transition: transform 0.3s ease;
         }
-        
+
+        .content-section {
+            z-index: 1101;
+        }
+
         .dropdown-content {
             display: none;
             position: absolute;
@@ -326,11 +358,22 @@
             min-width: 200px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             border-radius: 15px;
-            z-index: 1000;
+            z-index: 1102;
             right: 0;
             overflow: hidden;
             margin-top: 10px;
             animation: fadeIn 0.3s ease-out;
+        }
+
+        #ideology {
+            z-index: 1; /* Добавьте это */
+            position: relative; /* Необходимо для работы z-index */
+        }
+
+        @media (max-width: 768px) {
+            .dropdown-content {
+                z-index: 1101; /* Убедимся, что на мобильных тоже выше */
+            }
         }
         
         .dropdown-content a {
@@ -529,6 +572,17 @@
     </div>
 
     <script>
+        // Прокрутка вверх при загрузке
+        window.addEventListener('load', function() {
+            // Мгновенная прокрутка в самый верх
+            window.scrollTo(0, 0);
+            
+            // Дополнительно на случай если сработает анимация
+            setTimeout(function() {
+                window.scrollTo(0, 0);
+            }, 100);
+        });
+
         // Автоматическая подсветка активного раздела с центрированием
         const sections = document.querySelectorAll('.content-section');
         const menuItems = document.querySelectorAll('.menu-item');
