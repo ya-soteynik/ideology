@@ -253,12 +253,11 @@
             box-shadow: 0 15px 25px rgba(0,0,0,0.15);
         }
 
-        /* Кнопка результатов */
         .results-btn {
             display: inline-block;
             background: linear-gradient(135deg, #9c27b0, #7b1fa2);
             color: white;
-            padding: 18px 36px;
+            padding: 15px 40px; /* Совпадает с vote-btn */
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
@@ -270,7 +269,16 @@
             font-size: 16px;
             position: relative;
             overflow: hidden;
+            min-width: 200px; /* Добавляем минимальную ширину как у vote-btn */
+            text-align: center; /* Центрируем текст */
         }
+
+        @media (max-width: 576px) {
+            .results-btn {
+                width: 70%; /* На мобильных занимает всю ширину */
+                padding: 16px 30px; /* Адаптивный padding */
+    }
+}
 
         .results-btn:hover {
             transform: translateY(-3px);
@@ -318,7 +326,7 @@
             min-width: 200px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             border-radius: 15px;
-            z-index: 1;
+            z-index: 1000;
             right: 0;
             overflow: hidden;
             margin-top: 10px;
