@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!-- materials.html -->
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Материалы | Проект Национальной Идеологии России</title>
+    <style>
+        :root {
+            --primary: #4a6fa5;
+            --primary-dark: #3a5a8f;
+            --secondary: #f8faff;
+            --accent: #ff6b6b;
+            --text: #2c3e50;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', 'Arial', sans-serif;
+            background-color: var(--secondary);
+            color: var(--text);
+            line-height: 1.7;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* Контент-блок */
+        .content-section {
+            background: rgba(255,255,255,0.9);
+            border-radius: 20px;
+            margin: 120px auto 60px;
+            padding: 60px;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.3);
+            animation: fadeIn 0.6s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: var(--primary);
+            margin: 0 auto 40px;
+            padding-bottom: 15px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        /* Фоновые элементы */
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.2;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            top: 20%;
+            left: 10%;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--accent);
+            top: 60%;
+            left: 80%;
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: var(--info);
+            top: 80%;
+            left: 20%;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .content-section {
+                padding: 30px;
+                margin: 80px 20px 40px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Фоновые элементы -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="content-section">
+        <h1>Предложения</h1>
+        <p>Здесь будут размещены предложения людей, касающиеся проекта</p>
+    </div>
+</body>
+</html>
