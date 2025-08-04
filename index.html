@@ -21,18 +21,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
-        }
-
         /* Базовые стили */
         body {
             margin: 0;
@@ -79,22 +67,11 @@
             display: inline-block;
             position: relative;
             overflow: hidden;
+            transition: transform 0.3s ease;
         }
 
-        .menu-item::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 3px;
-            background: white;
-            transform: translateX(-50%);
-            transition: width 0.3s ease;
-        }
-
-        .menu-item:hover::before {
-            width: 60%;
+        .menu-item:hover {
+            transform: scale(1.05);
         }
 
         .menu-item.active {
@@ -187,13 +164,11 @@
             font-size: 16px;
             position: relative;
             overflow: hidden;
-            animation: pulse 2s infinite;
         }
 
         .download-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 30px rgba(74, 111, 165, 0.3);
-            animation: none;
         }
 
         .download-btn::after {
@@ -222,7 +197,7 @@
             display: flex;
             justify-content: center;
             gap: 30px;
-            margin: 60px 0;
+            margin: 60px 0 30px;
             flex-wrap: wrap;
         }
 
@@ -274,8 +249,98 @@
         }
 
         .vote-btn:hover {
-            transform: translateY(-5px) scale(1.03);
+            transform: translateY(-5px);
             box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Кнопка результатов */
+        .results-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #9c27b0, #7b1fa2);
+            color: white;
+            padding: 18px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 30px auto 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 15px rgba(156, 39, 176, 0.2);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .results-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(156, 39, 176, 0.3);
+        }
+
+        /* Стили для выпадающего меню */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        
+        .dropdown-btn {
+            background: linear-gradient(135deg, var(--info), #1976D2);
+            color: white;
+            padding: 18px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 8px 15px rgba(25, 118, 210, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-btn:hover {
+            background: linear-gradient(135deg, #1976D2, #1565C0);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(25, 118, 210, 0.3);
+        }
+        
+        .dropdown-btn svg {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            z-index: 1;
+            right: 0;
+            overflow: hidden;
+            margin-top: 10px;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .dropdown-content a {
+            color: var(--text);
+            padding: 15px 20px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: var(--primary);
+        }
+        
+        .show {
+            display: block;
         }
 
         /* Декоративные элементы */
@@ -295,7 +360,6 @@
             border-radius: 50%;
             filter: blur(40px);
             opacity: 0.2;
-            animation: float 15s infinite ease-in-out;
         }
 
         .shape-1 {
@@ -304,7 +368,6 @@
             background: var(--primary);
             top: 20%;
             left: 10%;
-            animation-delay: 0s;
         }
 
         .shape-2 {
@@ -313,7 +376,6 @@
             background: var(--accent);
             top: 60%;
             left: 80%;
-            animation-delay: 2s;
         }
 
         .shape-3 {
@@ -322,7 +384,6 @@
             background: var(--info);
             top: 80%;
             left: 20%;
-            animation-delay: 4s;
         }
 
         /* Адаптивность */
@@ -350,9 +411,16 @@
                 font-size: 2rem;
             }
             
-            .vote-btn {
+            .vote-btn, .results-btn, .dropdown-btn, .download-btn {
                 min-width: 160px;
                 padding: 16px 30px;
+                font-size: 14px;
+            }
+            
+            .dropdown-content {
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%);
             }
         }
 
@@ -362,13 +430,23 @@
                 gap: 15px;
             }
             
-            .vote-btn {
+            .vote-btn, .results-btn {
                 width: 100%;
             }
             
-            .download-btn {
-                padding: 16px 24px;
-                font-size: 14px;
+            .dropdown {
+                width: 100%;
+            }
+            
+            .dropdown-btn {
+                width: 100%;
+            }
+            
+            .dropdown-content {
+                width: 100%;
+                right: auto;
+                left: 0;
+                transform: none;
             }
         }
     </style>
@@ -395,7 +473,10 @@
     <div class="page-content">
         <!-- Титульный лист -->
         <section id="main" class="content-section">
-            <h1>Национальная Идеология России</h1>
+            <h1>Национальная идеология России</h1>
+            <p>Здесь будет текст титульного листа...</p>
+            <p></p>
+            <p>Ниже вы сможете ознакомиться с презентацией нашего проекта, его основным текстом и дополнительными материалами...</p>
             <a href="#" class="download-btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 10px;">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -404,11 +485,27 @@
                 </svg>
                 Скачать презентацию
             </a>
+            
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Дополнительные материалы
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="dropdown-content">
+                    <a href="materials.html">Материалы</a>
+                    <a href="articles.html">Статьи</a>
+                    <a href="suggestions.html">Предложения</a>
+                </div>
+            </div>
         </section>
 
         <!-- Основной текст идеологии -->
         <section id="ideology" class="content-section">
-            <h1>Основные принципы</h1>
+            <h1>Основной текст идеологии</h1>
+            <p></p>
+            <p>Здесь будет размещен основной текст нашей идеологии</p>
         </section>
 
         <!-- Голосование -->
@@ -419,6 +516,7 @@
                 <button class="vote-btn no">Не поддерживаю</button>
                 <button class="vote-btn suggest">Предложения</button>
             </div>
+            <a href="results.html" class="results-btn">Результаты голосования</a>
         </section>
     </div>
 
@@ -498,6 +596,33 @@
             });
         });
 
+        // Управление выпадающим меню
+        document.querySelector('.dropdown-btn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            const dropdownContent = this.nextElementSibling;
+            dropdownContent.classList.toggle('show');
+            
+            // Анимация стрелки
+            const svg = this.querySelector('svg');
+            if (dropdownContent.classList.contains('show')) {
+                svg.style.transform = 'rotate(180deg)';
+            } else {
+                svg.style.transform = 'rotate(0)';
+            }
+        });
+
+        // Закрытие выпадающего меню при клике вне его
+        window.addEventListener('click', function() {
+            const dropdowns = document.querySelectorAll('.dropdown-content');
+            dropdowns.forEach(dropdown => {
+                if (dropdown.classList.contains('show')) {
+                    dropdown.classList.remove('show');
+                    const svg = dropdown.previousElementSibling.querySelector('svg');
+                    svg.style.transform = 'rotate(0)';
+                }
+            });
+        });
+
         // Следим за прокруткой
         window.addEventListener('scroll', updateActiveMenu);
         window.addEventListener('load', () => {
@@ -505,11 +630,6 @@
             if (window.location.hash === '' || window.location.hash === '#main') {
                 centerSection(document.querySelector('#main'));
             }
-            
-            // Запускаем анимацию фона
-            document.querySelectorAll('.shape').forEach((shape, i) => {
-                shape.style.animationDuration = `${15 + i*5}s`;
-            });
         });
 
         // Добавляем стиль для анимации ripple
